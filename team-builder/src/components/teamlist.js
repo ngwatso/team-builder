@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
 export default function TeamList(props) {
-	const [memberName, setMemberName] = useState({ name: "" });
+	const [memberName, setMemberName] = useState({
+		name: "",
+		email: "",
+		role: "",
+	});
 
 	const handleChange = (event) => {
 		setMemberName({
 			...memberName,
-			name: event.target.value,
+			[event.target.name]: event.target.value,
 		});
 	};
 
 	const submitForm = (event) => {
 		event.preventDefault();
 		props.addNewMember(memberName);
-		setMemberName({ name: "" });
+		setMemberName({ name: "", email: "", role: "" });
 	};
 
 	return (
@@ -21,10 +25,29 @@ export default function TeamList(props) {
 			<label htmlFor="name">Name</label>
 			<input
 				id="name"
+				name="name"
 				type="text"
 				placeholder="Enter Name"
 				onChange={handleChange}
 				value={memberName.name}
+			/>
+			<label htmlFor="email">Email</label>
+			<input
+				id="email"
+				name="email"
+				type="text"
+				placeholder="Email Address"
+				onChange={handleChange}
+				value={memberName.email}
+			/>
+			<label htmlFor="role">Role</label>
+			<input
+				id="role"
+				name="role"
+				type="text"
+				placeholder="Team Role"
+				onChange={handleChange}
+				value={memberName.role}
 			/>
 			<button type="submit">Add Team Member</button>
 		</form>

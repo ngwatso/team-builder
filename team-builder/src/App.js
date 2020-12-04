@@ -10,6 +10,8 @@ function App() {
 		const newMember = {
 			id: Date.now(),
 			name: member.name,
+			email: member.email,
+			role: member.role,
 		};
 		setTeamMembers([...teamMembers, newMember]);
 	};
